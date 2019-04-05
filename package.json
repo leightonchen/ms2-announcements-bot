@@ -1,0 +1,36 @@
+{
+  "name": "ms2-announcements-bot",
+  "version": "1.0.0",
+  "description": "A Discord bot which crawls MapleStory2's news page, and posts new announcements to a Discord channel.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leightonchen/ms2-announcements-bot.git"
+  },
+  "keywords": [
+    "Discord",
+    "Nexon",
+    "MapleStory2",
+    "bot"
+  ],
+  "author": "Leighton Chen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/leightonchen/ms2-announcements-bot/issues"
+  },
+  "homepage": "https://github.com/leightonchen/ms2-announcements-bot#readme",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.2",
+    "discord.js": "^11.4.2",
+    "mongoose": "^5.4.22",
+    "simplecrawler": "^1.1.6"
+  },
+  "devDependencies": {
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.16.0"
+  }
+}
