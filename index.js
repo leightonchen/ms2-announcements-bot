@@ -9,8 +9,12 @@ const crawler = new Crawler('http://maplestory2.nexon.net/en/news');
 
 crawler.maxDepth = 1;
 
+crawler.on('crawlstart', () => {
+  console.log('Crawler started at: ', new Date().toTimeString());
+});
+
 crawler.on('fetchcomplete', async (_, responseBuffer) => {
-  const newsChannel = client.channels.find('name', channel);
+  const channels = client.guilds.array().map(guild => guild.channels.find('name', channel));
   const $ = cheerio.load(responseBuffer.toString());
   const items = $('.news-item');
   const re = /'(.*)'/;
@@ -24,11 +28,13 @@ crawler.on('fetchcomplete', async (_, responseBuffer) => {
     };
 
     // eslint-disable-next-line no-await-in-loop
-    await insertIfNotExists(item, newsChannel);
+    await insertIfNotExists(item, channels);
   }
 });
 
 (async () => {
   await client.login(token);
-  setInterval(() => crawler.start(), 60000 * 30);
+  setInterval(() => {
+    crawler.start();
+  }, 60000 * 30);
 })();

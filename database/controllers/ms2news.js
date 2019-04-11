@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const MS2News = require('../models/ms2news');
 
-const insertIfNotExists = async (item, channel) => {
+const insertIfNotExists = async (item, channels) => {
   return MS2News.find({ title: item.title }).exec()
     .then(async (docs) => {
       if (!docs.length) {
@@ -18,9 +18,10 @@ const insertIfNotExists = async (item, channel) => {
           .setImage(item.image)
           .setColor('#1DA1F2')
           .addField('To read the full news click here:', item.fullUrl);
-        channel.send(msg);
+        channels.forEach(channel => channel.send(msg));
       }
-    });
+    })
+    .catch(error => console.log(error));
 };
 
 module.exports = insertIfNotExists;
