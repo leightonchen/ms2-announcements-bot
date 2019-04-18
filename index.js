@@ -4,6 +4,8 @@ const { token, channel } = require('./config');
 
 const client = new Discord.Client();
 
+client.on('error', console.error);
+
 (async () => {
   await client.login(token);
   setInterval(() => {
