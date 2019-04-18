@@ -31,5 +31,21 @@ module.exports = async (client, channel) => {
     }
   });
 
+  crawler.on('fetchclienterror', (_, error) => {
+    console.log(`fetchclienterror: ${error}`);
+  });
+
+  crawler.on('fetchtimeout', () => {
+    console.log('fetchtimeout');
+  });
+
+  crawler.on('fetch404', () => {
+    console.log('fetch404');
+  });
+
+  crawler.on('fetcherror', () => {
+    console.log('fetcherror');
+  });
+
   crawler.start();
 };
